@@ -1,0 +1,53 @@
+# 1. DOCUMENT_METADATA
+NAME: "MILKY_WAY_CARTOGRAPHIC_NAVIGATION_SYSTEM"
+CATEGORY: "SYSTEM_STANDARD"
+IDENTIFIER: "SYS-MILKYWAY-CARTOGRAPHY-001"
+VERSION: "0.1.1"
+STATUS: "REVIEW"
+AUTHOR: "Robert Michael Holliday"
+AUTHORITATIVE_BODY: "STSF GOVERNANCE AUTHORITY"
+LAST_UPDATED: "2026-09-15"
+COMPATIBILITY: "STSF==7.8.23"
+PROFILE_CLAIMS: ["STSF_BASE_PROFILE"]
+
+# 2. PURPOSE_SCOPE
+Defines a hierarchical cartographic navigation system answering four operational questions: where the navigator is, where the navigator was, where the navigator wants to go, and how to get there. The Android POC validates interaction and state behavior from local phone sensors through local-system, inter-system local-group, transaxial, and Milky Way visualization scales. The POC does not claim interstellar self-localization from phone hardware and does not issue flight-control commands.
+
+# 3. DEFINITIONS
+CURRENT_STATE is the best available position, velocity, orientation, epoch, frame, uncertainty, and localization mode. STATE_HISTORY is the ordered retained sequence of navigation states. NAV_TARGET is a destination state. ROUTE is a cartographic path between current state and target. TRANSAXIAL is a large-scale regional coordinate/routing layer subordinate to the canonical Milky Way reference. DEMO_GEOMETRY is non-authoritative visualization data used only to exercise system behavior.
+
+# 4. SYSTEM_OVERVIEW
+The operational kernel is LOCATE -> RECORD -> TARGET -> NAVIGATE. One persistent 3D cartographic view represents the active state at five scales: LOCAL, LOCAL_SYSTEM, INTER_SYSTEM_LOCAL_GROUP, TRANSAXIAL, and MILKY_WAY. Every state is classified by evidence origin. Measured phone state and demonstration geometry remain distinguishable.
+
+# 5. ARCHITECTURE
+Layers are SENSOR_INPUT, LOCALIZATION_STATE, HISTORY, TARGET, CARTOGRAPHIC_VIEW, ROUTE, and GUI. Cartography provides spatial state and route geometry only. Guidance and flight control remain separate authorities. The Android POC uses GNSS and available orientation sensors for local measured state; larger-scale scene data are explicitly non-authoritative until catalog ingestion is implemented.
+
+# 6. INTERFACE_DEFINITIONS
+IFACE_LOCATE ingests available phone location/sensor state and emits CURRENT_STATE. IFACE_RECORD appends qualified state samples to STATE_HISTORY. IFACE_TARGET selects a visible object or retained state as NAV_TARGET. IFACE_ROUTE computes display route geometry and, for local retained GNSS targets, distance and bearing. IFACE_SCALE selects a display/reference scale without changing measured state identity.
+
+# 7. DATA_MODELS
+CURRENT_STATE requires epoch, localization_mode, reference_frame, position, uncertainty when available, and contributing source class. HISTORY_STATE requires epoch and position. NAV_TARGET requires identity, frame, and target class. ROUTE_STATE requires current state identity and target identity. DEMO geometry SHALL be labeled DEMO and SHALL NOT be emitted as measured or navigation-authority data.
+
+# 8. ALGORITHMIC_FORMALISM
+At each update: acquire sensor/location evidence; classify localization mode; update current state; append history when temporal or spatial threshold is crossed; preserve selected scale; transform or project state for visualization; if target exists compute route geometry; when both endpoints are local GNSS history states compute geodesic distance and initial bearing using Android Location functions; render state with evidence classification intact.
+
+# 9. DEPENDENCIES
+Target document standard: STD-STSF-004 v7.8.23. Android build target: STD-ANDROID-APK-BUILD-001 v6.2.11. Aesthetic translation basis: STD-AESTHETIC-001 v1.3.1 reconstructed candidate. Runtime depends only on Android framework APIs admitted by the build profile.
+
+# 10. CONSTRAINTS
+Measured and simulated/DEMO state SHALL NOT be conflated. Scale changes SHALL NOT mutate measured state. Frame identity and epoch SHALL remain visible or recoverable. Target selection SHALL NOT imply route authority beyond available evidence. The POC SHALL NOT represent DEMO celestial coordinates as production navigation data. The GUI SHALL expose exactly four primary screens: NOW, HISTORY, TARGET, ROUTE.
+
+# 11. FAILURE_MODES
+Failures include denied location permission, unavailable GNSS, unavailable rotation vector, stale fix, empty history, no selected target, unsupported sensor, and selection of non-authoritative DEMO geometry. Failures degrade functionality and are surfaced rather than replaced by invented measurements.
+
+# 12. SECURITY_CONSIDERATIONS
+Location data remain local to the application in this POC. No network permission is requested. No telemetry, remote service, advertising, or external account dependency is included. Runtime permissions are limited to coarse/fine location. DEMO geometry is embedded code data.
+
+# 13. VALIDATION_CRITERIA
+PASS requires: app launches without network; four screens are reachable; 3D view rotates and scales; GNSS fix is displayed when available; history records qualified samples; a history point can become a target; route screen reports local distance/bearing for a retained GNSS target; all non-local bundled celestial geometry is marked DEMO; no screen claims flight-control authority. STSF COMPLIANT status is forbidden until native validation of this exact document succeeds.
+
+# 14. IMPLEMENTATION_GUIDELINES
+Prefer a single persistent cartographic scene with subordinate information recesses. Keep rendering dependency-free in the POC. Replace DEMO scenes later with versioned catalogs and deterministic coordinate transforms. Add raw GNSS, camera celestial fixes, ephemerides, uncertainty covariance, and transaxial registry only after the kernel behavior is verified.
+
+# 15. VERSIONING_POLICY
+Version 0.1.0 is the initial Android proof-of-concept architecture. Version 0.1.1 repairs historical-target route visualization and makes non-local current-position projection labeling explicit. PATCH increments repair POC behavior without changing the four-question contract. MINOR increments add backward-compatible coordinate, catalog, sensor, or navigation interfaces. MAJOR increments change authority boundaries or the operational navigation model.
