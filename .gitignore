@@ -1,0 +1,32 @@
+# Android / Java build outputs
+*.apk
+*.ap_
+*.dex
+*.class
+build/
+out/
+bin/
+obj/
+
+# Signing material and secrets
+*.keystore
+*.jks
+*.p12
+*.pem
+*.key
+*.env
+.env
+local.properties
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local evidence / generated release bundles
+*_EVIDENCE_*.tar.gz
+*_CONTINUATION_*.txt
+releases/*.apk
+releases/*.tar.gz
