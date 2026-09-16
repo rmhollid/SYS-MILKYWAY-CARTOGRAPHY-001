@@ -1,0 +1,3 @@
+# v0.1.1 release checksums
+a182dc2dee79f3987e7af243f16de7f725ea7c3a92cd5e7656c862518c90d28e  SYS-MILKYWAY-CARTOGRAPHY-001_ANDROID_POC_v0.1.1.tar.gz
+b9119a984fd4f9494c49c52569b12ff8f4c0d8dbe021c95ef99069be0e879ee5  org.stsf.milkyway-0.1.1.apk
