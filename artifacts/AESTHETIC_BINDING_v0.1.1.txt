@@ -1,0 +1,36 @@
+AESTHETIC BINDING
+ARTIFACT: SYS-MILKYWAY-CARTOGRAPHY-001_ANDROID_GUI_SPEC_v0.1.1
+SUPERSEDES: SYS-MILKYWAY-CARTOGRAPHY-001_ANDROID_GUI_SPEC_v0.1.0
+BASIS: STD-AESTHETIC-001 v1.3.1 reconstructed candidate
+
+APPLICATION HOST
+Android navigation application with one persistent 3D cartographic instrument.
+
+RETAINED PRINCIPLES
+- monolithic massing: 3D viewport is the dominant mass
+- rectilinear authority: status, data recess, and four-screen selector are planar/rectilinear
+- subtractive function: information surfaces read as integrated recesses, not decorative floating cards
+- quiet interface: thin labels, exact state readouts, restrained lines
+- grayscale base palette
+- minimal functional signal only
+- anti-ornamental behavior
+- contained capability
+
+HOST OVERRIDES / DEVIATIONS
+- curves are permitted for true/data-derived trajectories, celestial geometry, uncertainty volumes, and touch gesture behavior because these are functional representations, not ornamental identity.
+- Android accessibility/touch requirements take precedence over aesthetic compression where needed.
+
+FOUR PRIMARY SCREENS
+NOW = WHERE YOU ARE
+HISTORY = WHERE YOU WERE
+TARGET = WHERE YOU WANT TO GO
+ROUTE = HOW TO GET THERE
+
+SIGNAL ASSIGNMENT
+WHITE = active/neutral cartographic state
+AMBER = target, caution, degraded-but-usable, active route emphasis
+RED = missing/critical/unusable state
+All signal treatment remains subordinate to the scene.
+
+EXCLUSIONS
+No glassmorphism, neon-theater styling, fake holograms, ornamental gradients, playful iconography, ambient scanning effects, decorative star streaking, card-grid fragmentation, or fabricated celestial data.
