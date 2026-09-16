@@ -1,0 +1,35 @@
+SYS-MILKYWAY-CARTOGRAPHY-001 Android POC v0.1.1
+
+PURPOSE
+A four-screen Android navigation demonstrator for the Milky Way cartographic system:
+- WHERE YOU ARE
+- WHERE YOU WERE
+- WHERE YOU WANT TO GO
+- HOW TO GET THERE
+
+POC CAPABILITIES
+- real Android GNSS location ingestion when permission and hardware are available
+- rotation-vector sensor attitude readout when available
+- local navigation-state history
+- target selection from visible cartographic objects or history samples
+- local return-to-history guidance distance/bearing and visible 3D return vector
+- persistent interactive pseudo-3D cartographic visualizer with rotate and pinch scale
+- LOCAL, LOCAL_SYSTEM, INTER_SYSTEM_LOCAL_GROUP, TRANSAXIAL, and MILKY_WAY display scales
+- clear separation of measured phone state from DEMO reference geometry
+
+LIMITS
+The celestial/system/transaxial/Milky-Way reference points shipped in this POC are explicit DEMO geometry. They are not ephemerides, astrometric authority, or flight-navigation data. The POC proves the interface, state, transform-scale, history, target, and route interaction model only.
+
+BUILD PROFILE
+Designed for STD-ANDROID-APK-BUILD-001 v6.2.11:
+- Java only
+- minSdk 26
+- targetSdk 37
+- no Gradle/Maven/network build dependencies
+
+STATUS
+REVIEW / POC. No production-navigation claim.
+
+PATCH v0.1.1
+- draws the 3D route vector to a selected historical state
+- renders the measured current position distinctly across scales; non-local placement is explicitly labeled DEMO FRAME PROJECTION
