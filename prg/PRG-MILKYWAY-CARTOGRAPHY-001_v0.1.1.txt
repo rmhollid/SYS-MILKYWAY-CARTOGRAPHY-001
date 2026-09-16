@@ -1,0 +1,16 @@
+PRG-MILKYWAY-CARTOGRAPHY-001 v0.1.1
+STATUS: REVIEW
+PARENT: SYS-MILKYWAY-CARTOGRAPHY-001 v0.1.1
+TARGET: Android Java POC
+
+FUNCTION ASSEMBLY
+1. MainActivity establishes the full-screen host and permission gate.
+2. NavigationView owns one persistent cartographic scene, screen switching, rendering, selection, and sensor/location subscriptions.
+3. NavModel owns current state, history, target, scale, localization classification, and local return-route calculations.
+4. ReferenceScenes supplies explicit DEMO geometry only; it is not navigation authority.
+5. Vec3 and SceneObject provide bounded internal geometry structures.
+
+NO NETWORK SERVICE IS USED.
+
+PATCH v0.1.1
+NavigationView draws explicit historical return vectors and distinguishes measured-local position from larger-scale DEMO frame projections.
