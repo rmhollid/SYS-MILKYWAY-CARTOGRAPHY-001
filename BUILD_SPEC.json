@@ -1,0 +1,29 @@
+{
+  "application_id": "org.stsf.milkyway",
+  "asset_dirs": [],
+  "format": "stsf-android-build/v4",
+  "java_release": 17,
+  "java_source_dirs": [
+    "app/src/main/java"
+  ],
+  "manifest": "app/src/main/AndroidManifest.xml",
+  "min_sdk": 26,
+  "namespace": "org.stsf.milkyway",
+  "resource_dirs": [],
+  "signing": {
+    "alias": "milkywaydebug",
+    "keypass_env": "STSF_ANDROID_KEYPASS",
+    "keystore": "/mnt/data/_milkyway_cartography_debug.keystore",
+    "storepass_env": "STSF_ANDROID_STOREPASS"
+  },
+  "target_sdk": 37,
+  "toolchain": {
+    "java": "/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+    "javac": "/usr/lib/jvm/java-21-openjdk-amd64/bin/javac",
+    "jlink": "/usr/lib/jvm/java-21-openjdk-amd64/bin/jlink",
+    "jmod": "/usr/lib/jvm/java-21-openjdk-amd64/bin/jmod",
+    "jrt_fs_jar": "/usr/lib/jvm/java-21-openjdk-amd64/lib/jrt-fs.jar"
+  },
+  "version_code": 101,
+  "version_name": "0.1.1"
+}
